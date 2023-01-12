@@ -1,74 +1,180 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Project: Event invite</title>
-        <canvas id="cnv"></canvas>
-        <style>
-            body {margin:0;}
-            canvas{position:fixed;}
-            body {
-                background-color: #000;
-                
-            }
-            .first-line {
-                color: #FFFF;
-                font-family: "courier New", sans-serif;
-                font-size: 10px;
-                text-shadow: 1px 1px 2px yellow, 0 0 25px white, 0 0 5px red;
-                text-align: center;
-            }
-            .event-name {
-                color:#c90016;
-                /*text-shadow: 1px 1px 2px blue, 0 0 25px white, 0 0 5px red;*/
-                text-align: center;
-                margin: 100px;
-            }
-            .date {
-                color: #D3D3D3;
-                text-align: center;
-            }
-        </style>
-    </head>
-    <body>
-        
-        <div class="first-line"><h1>You're invited!</h1></div>
-        <div class="event-name"><h2>To Valentine's Day!</h2></div>
-        
-        <div class="date"><p>14 February 2023</p></div>
-    </body>
-</html>
-
-<script>
-//Get context and screen size;
-var ctx = cnv.getContext("2d");
-var W = window.innerWidth;
-var H = window.innerHeight;
-
-//Set Canvas and Background Color;
-cnv.width = W;
-cnv.height = H;
-ctx.fillStyle = "#112";
-ctx.fillRect(0, 0, W, H);
-
-//Glow effect;
-ctx.shadowBlur = 10;
-ctx.shadowColor = "white";
-
-function animate() {
-  //Random position and size of stars;
-  let x = W * Math.random();
-  let y = H * Math.random();
-  let r = 2.5 * Math.random();
-
-  //Draw the stars;
-  ctx.beginPath();
-  ctx.fillStyle = "white";
-  ctx.arc(x, y, r, 0, Math.PI * 2);
-  ctx.fill();
-
-  //Using setTimeout instead of window.requestAnimationFrame for slower speed... window.requestAnimationFrame is approximately equal to setTimeout(func, 17);
-  setTimeout(animate, 100);
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stars</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta https-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />  
+    <style>
+* {
+    padding: 0;
+    margin: 0;
 }
-animate();
-</script>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+    overflow: hidden;
+}
+.moon {
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+    animation: shine 2s ease-in-out infinite;
+    background-color: rgb(230, 224, 224);
+    box-shadow: 0px 0px 8px 2px rgba(235, 235, 231, 0.301);
+    position: relative;
+    overflow: hidden;
+}
+.details {
+    width: 100px;
+    height:100px;
+    border-radius: 50%;
+    background-color: rgba(165, 165, 165, 0.089);
+}
+.details.one {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: inset 2px 0 4px rgba(167, 167, 167, 0.685);
+}
+.details.two {
+    position: absolute;
+    top: 60px;
+    left: 16px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: inset -2px 0 4px rgba(167, 167, 167, 0.685);
+}
+.details.three {
+    position: absolute;
+    top: 70px;
+    left: 70px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: inset 2px 0 4px rgba(167, 167, 167, 0.685);
+}
+.details.four.small {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: transparent;
+    box-shadow: inset 2px 0 4px rgba(167, 167, 167, 0.585);
+}
+.text_row1 {
+	position: relative;
+    top: 40px;
+    background-color: transparent;
+    color: #FFFF;
+    font-family: "courier New", sans-serif;
+    font-size: 30px;
+    text-shadow: 1px 1px 2px yellow, 0 0 25px white, 0 0 5px red;
+    
+}
+.text_row2 {
+	position: relative;
+    top: 80px;
+    background-color: transparent;
+    color:#c90016;
+    font-family: "courier New", sans-serif;
+    font-size: 30px;
+    text-shadow: 1px 1px 2px blue, 0 0 25px white, 0 0 5px red;
+    
+}
+.text_row3 {
+	position: relative;
+    top: 200px;
+    background-color: transparent;
+    color:#D3D3D3;
+    font-family: "courier New", sans-serif;
+    font-size: 22px;
+}
+#stars > i {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #fff, 
+                0 0 15px #fff, 
+                0 0 25px #fff;
+    animation: animate linear infinite; 
+}
+.moon_outer {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    z-index: 1;
+}
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    95% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+    </style>
+  </head>
+  <body>
+    <div class="moon_outer">
+      <div class="moon">
+        <div class="details"></div>
+        <div class="details one"></div>
+        <div class="details two"></div>
+        <div class="details three"></div>
+        <div class="details four small"></div>
+      </div>
+
+    </div>
+    <div class="text">
+        <div class="text_row1">Happy Valentine's day!</div>
+        <div class="text_row2">Love YOU!</div>
+        <div class="text_row3"> 14 February 2023</div>
+    </div>
+    <section id="stars"></section>
+    <script type="text/javascript">
+      function stars() {
+        const count = 300;
+        const stars = document.getElementById('stars');
+        var i = 0;
+        while(i < count) {
+          const star = document.createElement('i');
+          const x = Math.floor(Math.random() * window.innerWidth)
+          const y = Math.floor(Math.random() * window.innerHeight)
+          const size = Math.random() * 5;
+          star.style.left = x+'px';
+          star.style.top = y+'px';
+          star.style.height = 1+size+'px';
+          star.style.width = 1+size+'px';
+          const duration = Math.random() * 2;
+          star.style.animationDuration = 2+duration+'s';
+          stars.appendChild(star);
+          i++
+        }
+      }
+      stars();
+    </script>
+  </body>
+</html>
